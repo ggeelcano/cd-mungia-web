@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CD Mungia — Club Deportivo Mungia · Desde 1924</title>
+<meta name="description" content="Web oficial del Club Deportivo Mungia. Fundado en 1924. Fútbol en Mungia, Bizkaia. Campo Municipal de Atxutegi.">
+<meta property="og:title" content="CD Mungia — Desde 1924">
+<meta property="og:description" content="El club de fútbol de Mungia. Más de 100 años de historia roja.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1200&q=80">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rojo:#d10a11;
+  --rojo-claro:#ff2a32;
+  --negro:#0a0a0c;
+  --negro-2:#111114;
+  --gris:#1a1a1f;
+  --texto:#f5f5f7;
+  --texto-mute:#9a9aa3;
+  --max:1200px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--negro);
+  color:var(--texto);
+  overflow-x:hidden;
+  line-height:1.6;
+}
+.display{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.5px;line-height:.95;font-weight:400}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+section{padding:120px 24px;position:relative}
+.wrap{max-width:var(--max);margin:0 auto}
+
+/* ====== NAV ====== */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 32px;
+  transition:.4s cubic-bezier(.16,1,.3,1);
+  background:transparent;
+}
+header.scrolled{
+  background:rgba(10,10,12,.82);
+  backdrop-filter:blur(18px);
+  padding:12px 32px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.logo{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:1px}
+.crest{
+  width:42px;height:42px;border-radius:50%;
+  background:radial-gradient(circle at 30% 25%,var(--rojo-claro),var(--rojo) 60%,#7a0006);
+  display:grid;place-items:center;
+  font-family:'Anton',sans-serif;font-size:18px;color:#fff;
+  box-shadow:0 4px 20px rgba(209,10,17,.5),inset 0 0 0 2px rgba(255,255,255,.18);
+}
+.nav-links{display:flex;gap:34px;font-size:14px;font-weight:600}
+.nav-links a{position:relative;color:var(--texto-mute);transition:.25s}
+.nav-links a:hover{color:#fff}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--rojo-claro);transition:.3s}
+.nav-links a:hover::after{width:100%}
+.btn{
+  background:var(--rojo);color:#fff;padding:12px 26px;border-radius:100px;
+  font-weight:700;font-size:14px;transition:.3s;border:none;cursor:pointer;
+  box-shadow:0 6px 24px rgba(209,10,17,.35);
+}
+.btn:hover{background:var(--rojo-claro);transform:translateY(-2px);box-shadow:0 10px 32px rgba(209,10,17,.5)}
+.btn-ghost{background:transparent;border:1.5px solid rgba(255,255,255,.25);box-shadow:none}
+.btn-ghost:hover{background:#fff;color:var(--negro);border-color:#fff}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{width:26px;height:2px;background:#fff;border-radius:2px;transition:.3s}
+
+/* ====== HERO ====== */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:120px 24px 80px;position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:-2;
+  background:url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1920&q=80') center/cover;
+  transform:scale(1.1);
+}
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(10,10,12,.55) 0%,rgba(10,10,12,.7) 50%,var(--negro) 100%),
+             radial-gradient(circle at 70% 30%,rgba(209,10,17,.35),transparent 55%);
+}
+.hero-content{max-width:900px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--rojo-claro);margin-bottom:28px;
+}
+.eyebrow::before{content:"";width:34px;height:2px;background:var(--rojo-claro)}
+.hero h1{
+  font-size:clamp(56px,11vw,150px);margin-bottom:24px;
+  background:linear-gradient(180deg,#fff,#cfcfd6);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero h1 .rojo{background:linear-gradient(180deg,var(--rojo-claro),var(--rojo));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:clamp(17px,2vw,22px);color:var(--texto-mute);max-width:560px;margin-bottom:40px}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+.scroll-hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);font-size:12px;letter-spacing:2px;color:var(--texto-mute);text-transform:uppercase;animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+
+/* ====== STATS ====== */
+.stats{background:var(--negro);padding:80px 24px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.stat .num{font-family:'Anton',sans-serif;font-size:clamp(48px,7vw,84px);color:#fff;line-height:1}
+.stat .num span{color:var(--rojo-claro)}
+.stat .lbl{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--texto-mute);margin-top:8px}
+
+/* ====== SECTION HEAD ====== */
+.sec-head{margin-bottom:64px;max-width:680px}
+.sec-tag{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--rojo-claro);font-weight:700;margin-bottom:16px;display:block}
+.sec-head h2{font-size:clamp(38px,6vw,72px)}
+.sec-head p{color:var(--texto-mute);font-size:18px;margin-top:18px}
+
+/* ====== CLUB / SPLIT ====== */
+.split{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center}
+.split img{border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.split h3{font-size:clamp(28px,4vw,44px);margin-bottom:20px;line-height:1.1}
+.split p{color:var(--texto-mute);font-size:17px;margin-bottom:18px}
+.pill-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.pill{background:var(--gris);border:1px solid rgba(255,255,255,.08);padding:8px 18px;border-radius:100px;font-size:14px;font-weight:600}
+
+/* ====== EQUIPOS ====== */
+.teams{background:var(--negro-2)}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.team-card{
+  position:relative;border-radius:18px;overflow:hidden;min-height:380px;
+  display:flex;align-items:flex-end;
+  border:1px solid rgba(255,255,255,.06);
+  transition:.5s cubic-bezier(.16,1,.3,1);
+}
+.team-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:.7s;filter:brightness(.65)}
+.team-card:hover{transform:translateY(-8px);border-color:rgba(209,10,17,.5)}
+.team-card:hover img{transform:scale(1.08);filter:brightness(.5)}
+.team-card .info{position:relative;z-index:2;padding:30px;width:100%;background:linear-gradient(0deg,rgba(10,10,12,.95),transparent)}
+.team-card .info h3{font-family:'Anton',sans-serif;font-size:30px;text-transform:uppercase}
+.team-card .info span{color:var(--rojo-claro);font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase}
+
+/* ====== CAMPO ====== */
+.campo{position:relative;overflow:hidden}
+.campo-bg{position:absolute;inset:0;z-index:-2;background:url('https://images.unsplash.com/photo-1459865264687-595d652de67e?auto=format&fit=crop&w=1920&q=80') center/cover}
+.campo::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,var(--negro) 10%,rgba(10,10,12,.6) 60%,rgba(10,10,12,.3))}
+.campo-card{max-width:560px}
+.campo-specs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.08);border-radius:16px;overflow:hidden;margin-top:32px}
+.campo-specs div{background:var(--negro);padding:22px 24px}
+.campo-specs .k{font-size:13px;color:var(--texto-mute);text-transform:uppercase;letter-spacing:1px}
+.campo-specs .v{font-family:'Anton',sans-serif;font-size:26px;margin-top:4px}
+
+/* ====== SOCIO CTA ====== */
+.socio{text-align:center;background:linear-gradient(135deg,#7a0006,var(--rojo) 50%,#a30008);border-radius:0}
+.socio h2{font-size:clamp(40px,7vw,90px);color:#fff}
+.socio p{color:rgba(255,255,255,.9);font-size:20px;max-width:560px;margin:20px auto 36px}
+.btn-white{background:#fff;color:var(--rojo);box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.btn-white:hover{background:var(--negro);color:#fff}
+
+/* ====== PATROCINADORES ====== */
+.sponsors{text-align:center;background:var(--negro-2)}
+.sponsor-row{display:flex;flex-wrap:wrap;justify-content:center;gap:48px;align-items:center;margin-top:48px}
+.sponsor{font-family:'Anton',sans-serif;font-size:30px;color:var(--texto-mute);letter-spacing:1px;transition:.3s;opacity:.6}
+.sponsor:hover{color:#fff;opacity:1}
+
+/* ====== CONTACTO / FOOTER ====== */
+footer{background:var(--negro);padding:80px 24px 40px;border-top:1px solid rgba(255,255,255,.06)}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.foot-grid h4{font-size:14px;text-transform:uppercase;letter-spacing:2px;color:#fff;margin-bottom:20px}
+.foot-grid a,.foot-grid p{display:block;color:var(--texto-mute);font-size:15px;margin-bottom:12px;transition:.25s}
+.foot-grid a:hover{color:var(--rojo-claro)}
+.foot-brand p{max-width:320px}
+.foot-bottom{text-align:center;color:var(--texto-mute);font-size:13px;padding-top:32px;border-top:1px solid rgba(255,255,255,.06)}
+
+/* ====== REVEAL ANIM ====== */
+.reveal{opacity:0;transform:translateY(40px);transition:1s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ====== RESPONSIVE ====== */
+@media(max-width:880px){
+  .nav-links{
+    position:fixed;top:0;right:-100%;height:100vh;width:75%;max-width:320px;
+    background:var(--negro-2);flex-direction:column;justify-content:center;
+    padding:40px;gap:28px;font-size:20px;transition:.4s;z-index:999;
+  }
+  .nav-links.open{right:0}
+  .burger{display:flex;z-index:1001}
+  .nav-cta{display:none}
+  .split,.foot-grid{grid-template-columns:1fr;gap:36px}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:36px}
+  .team-grid{grid-template-columns:1fr}
+  .campo-specs{grid-template-columns:1fr 1fr}
+  section{padding:80px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header id="header">
+  <a href="#" class="logo"><span class="crest">CDM</span> CD MUNGIA</a>
+  <nav class="nav-links" id="navLinks">
+    <a href="#club">El Club</a>
+    <a href="#equipos">Equipos</a>
+    <a href="#campo">Atxutegi</a>
+    <a href="#socio">Hazte socio</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+  <button class="btn nav-cta" onclick="location.href='#socio'">Hazte socio</button>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="eyebrow">Desde 1924 · Mungia, Bizkaia</span>
+    <h1 class="display">Más que un club.<br>Somos <span class="rojo">de rojo.</span></h1>
+    <p>Cien años defendiendo los colores de Mungia. Cantera, pasión y fútbol en el corazón de Uribe-Butroe.</p>
+    <div class="hero-cta">
+      <a href="#socio" class="btn">Hazte socio 25/26</a>
+      <a href="#equipos" class="btn btn-ghost">Conoce los equipos</a>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll ↓</div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat reveal"><div class="num"><span>100</span>+</div><div class="lbl">Años de historia</div></div>
+    <div class="stat reveal"><div class="num">1924</div><div class="lbl">Año de fundación</div></div>
+    <div class="stat reveal"><div class="num">12+</div><div class="lbl">Equipos federados</div></div>
+    <div class="stat reveal"><div class="num">300+</div><div class="lbl">Jugadores en cantera</div></div>
+  </div>
+</section>
+
+<!-- CLUB -->
+<section id="club">
+  <div class="wrap split">
+    <img class="reveal" src="https://images.unsplash.com/photo-1551958219-acbc608c6377?auto=format&fit=crop&w=1200&q=80" alt="Fútbol en Mungia">
+    <div class="reveal">
+      <span class="sec-tag">El Club</span>
+      <h3 class="display">Un siglo defendiendo el escudo</h3>
+      <p>El Club Deportivo Mungia nació en <strong>1924</strong> y desde entonces es el corazón futbolístico de la villa. Generaciones de mungitarras han crecido vistiendo el rojo en el Campo Municipal de Atxutegi.</p>
+      <p>Hoy competimos en <strong>Preferente de Bizkaia</strong> con un primer equipo ambicioso y una de las canteras más vivas de Uribe, desde benjamines hasta el fútbol femenino.</p>
+      <div class="pill-list">
+        <span class="pill">⚽ Fundado en 1924</span>
+        <span class="pill">🔴 Colores rojos</span>
+        <span class="pill">🏟️ Campo de Atxutegi</span>
+        <span class="pill">🏆 Preferente Bizkaia</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPOS -->
+<section id="equipos" class="teams">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-tag">Nuestros equipos</span>
+      <h2 class="display">Del primer equipo a los micros</h2>
+      <p>Más de una docena de equipos federados llevan el nombre de Mungia por toda Bizkaia cada fin de semana.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1000&q=80" alt="Primer equipo">
+        <div class="info"><span>Preferente Bizkaia</span><h3>Primer Equipo</h3></div>
+      </div>
+      <div class="team-card reveal">
+        <img src="https://images.unsplash.com/photo-1606925797300-0b35e9d1794e?auto=format&fit=crop&w=1000&q=80" alt="Equipo femenino">
+        <div class="info"><span>Regional</span><h3>CDM Femenino</h3></div>
+      </div>
+      <div class="team-card reveal">
+        <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1000&q=80" alt="Cantera">
+        <div class="info"><span>Cantera</span><h3>Juvenil & Cadete</h3></div>
+      </div>
+      <div class="team-card reveal">
+        <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1000&q=80" alt="Infantil">
+        <div class="info"><span>Fútbol base</span><h3>Infantil & Alevín</h3></div>
+      </div>
+      <div class="team-card reveal">
+        <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=1000&q=80" alt="Benjamín">
+        <div class="info"><span>Escuela</span><h3>Benjamín & Micros</h3></div>
+      </div>
+      <div class="team-card reveal">
+        <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1000&q=80" alt="Afición">
+        <div class="info"><span>La grada</span><h3>Afición Roja</h3></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPO -->
+<section id="campo" class="campo">
+  <div class="campo-bg"></div>
+  <div class="wrap">
+    <div class="campo-card reveal">
+      <span class="sec-tag">La casa del club</span>
+      <h2 class="display" style="font-size:clamp(40px,7vw,80px)">Campo Municipal<br>de Atxutegi</h2>
+      <p style="color:var(--texto-mute);font-size:18px;margin-top:18px">Gamiz Bidea 25, Mungia. Hierba artificial de última generación, tribuna cubierta y el aliento de toda la villa cada domingo.</p>
+      <div class="campo-specs">
+        <div><div class="k">Dimensiones</div><div class="v">100 × 63 m</div></div>
+        <div><div class="k">Superficie</div><div class="v">Hierba artificial</div></div>
+        <div><div class="k">Campos F-7</div><div class="v">2 anexos</div></div>
+        <div><div class="k">Vestuarios</div><div class="v">5 + árbitro</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIO -->
+<section id="socio" class="socio">
+  <div class="wrap reveal">
+    <h2 class="display">Vístete de rojo</h2>
+    <p>Hazte socio de la temporada 25/26 y empuja al equipo desde la grada. El CD Mungia lo hacemos entre todos.</p>
+    <div class="hero-cta" style="justify-content:center">
+      <a href="#contacto" class="btn btn-white">Quiero ser socio</a>
+      <a href="#contacto" class="btn btn-ghost" style="border-color:rgba(255,255,255,.6)">Tienda del club</a>
+    </div>
+  </div>
+</section>
+
+<!-- PATROCINADORES -->
+<section class="sponsors">
+  <div class="wrap reveal">
+    <span class="sec-tag">Con el apoyo de</span>
+    <h2 class="display" style="font-size:clamp(30px,5vw,56px)">Nuestros patrocinadores</h2>
+    <div class="sponsor-row">
+      <span class="sponsor">AXA</span>
+      <span class="sponsor">MAPFRE</span>
+      <span class="sponsor">Bar Haritza</span>
+      <span class="sponsor">Torneados Muruaga</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contacto">
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <a href="#" class="logo" style="margin-bottom:20px"><span class="crest">CDM</span> CD MUNGIA</a>
+      <p>Club Deportivo Mungia. Fundado en 1924. El club de fútbol de la villa de Mungia, Bizkaia.</p>
+    </div>
+    <div>
+      <h4>Club</h4>
+      <a href="#club">El Club</a>
+      <a href="#equipos">Equipos</a>
+      <a href="#campo">Atxutegi</a>
+      <a href="#socio">Hazte socio</a>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <a href="mailto:mungiafubola@gmail.com">mungiafubola@gmail.com</a>
+      <p>Campo Municipal de Atxutegi<br>Gamiz Bidea 25, 48100 Mungia (Bizkaia)</p>
+    </div>
+  </div>
+  <div class="foot-bottom">© 1924–2026 Club Deportivo Mungia · Aupa Mungia! 🔴</div>
+</footer>
+
+<script>
+// Nav scroll
+const header=document.getElementById('header');
+addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>40));
+// Burger
+const burger=document.getElementById('burger'),nav=document.getElementById('navLinks');
+burger.addEventListener('click',()=>nav.classList.toggle('open'));
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+// Reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4*80)+'ms';io.observe(el)});
+</script>
+</body>
+</html>
